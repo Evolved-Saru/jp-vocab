@@ -213,11 +213,11 @@
       <div class="face front">
         <div class="face-label">よめるかな？</div>
         <canvas id="accent-canvas" width="300" height="80"></canvas>
-        <div class="kanji" id="kanji-front"></div>
       </div>
       <div class="face back">
         <div class="face-label">意味</div>
         <div class="back-content">
+          <div class="kanji" id="kanji-back" style="font-size:18px; color:var(--text-muted); margin-bottom:0.5rem;"></div>
           <div class="chinese" id="chinese-back"></div>
           <div class="english" id="english-back"></div>
         </div>
@@ -361,7 +361,7 @@ function render() {
   const w = deck[current];
   isFlipped = false;
   document.getElementById('card').classList.remove('flipped');
-  document.getElementById('kanji-front').textContent = w.kanji;
+  document.getElementById('kanji-back').textContent = w.kanji;
   document.getElementById('chinese-back').textContent = w.chinese;
   document.getElementById('english-back').textContent = w.english;
   document.getElementById('controls').style.display = 'none';
