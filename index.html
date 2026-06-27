@@ -6,192 +6,58 @@
 <title>病院用語フラッシュカード</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #f5f4f0;
-    --surface: #ffffff;
-    --border: #e0ddd6;
-    --border-strong: #c8c5bc;
-    --text-primary: #2c2c2a;
-    --text-secondary: #6b6b67;
-    --text-muted: #9e9b94;
-    --accent: #1a6bb5;
-    --accent-bg: #e6f1fb;
-    --success: #0f6e56;
-    --success-bg: #e1f5ee;
-    --danger: #c0392b;
-    --danger-bg: #fcebeb;
-    --radius: 8px;
+    --bg: #f5f4f0; --surface: #ffffff; --border: #e0ddd6; --border-strong: #c8c5bc;
+    --text-primary: #2c2c2a; --text-secondary: #6b6b67; --text-muted: #9e9b94;
+    --accent: #1a6bb5; --success: #0f6e56; --success-bg: #e1f5ee;
+    --danger: #c0392b; --danger-bg: #fcebeb; --radius: 8px;
   }
-
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a1a18;
-      --surface: #2c2c2a;
-      --border: #3d3d3a;
-      --border-strong: #555552;
-      --text-primary: #e8e6e0;
-      --text-secondary: #a8a5a0;
-      --text-muted: #6e6c68;
-      --accent: #5b9bd5;
-      --accent-bg: #0c2a44;
-      --success: #1d9e75;
-      --success-bg: #042c1e;
-      --danger: #e05c5c;
-      --danger-bg: #2c0f0f;
+      --bg: #1a1a18; --surface: #2c2c2a; --border: #3d3d3a; --border-strong: #555552;
+      --text-primary: #e8e6e0; --text-secondary: #a8a5a0; --text-muted: #6e6c68;
+      --accent: #5b9bd5; --success: #1d9e75; --success-bg: #042c1e;
+      --danger: #e05c5c; --danger-bg: #2c0f0f;
     }
   }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-    background: var(--bg);
-    color: var(--text-primary);
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 2rem 1rem;
+    background: var(--bg); color: var(--text-primary);
+    min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem;
   }
-
   .app { width: 100%; max-width: 480px; }
-
-  h1 {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    text-align: center;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-  }
-
-  .progress-text {
-    font-size: 12px;
-    color: var(--text-muted);
-    text-align: center;
-    margin-bottom: 6px;
-  }
-  .progress-bar {
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-  }
-  .progress-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 2px;
-    transition: width 0.3s ease;
-  }
-
-  .shuffle-row {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 1rem;
-  }
-  .nav-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-muted);
-    font-size: 13px;
-    padding: 4px 10px;
-    font-family: inherit;
-    border-radius: var(--radius);
-  }
+  h1 { font-size: 16px; font-weight: 500; color: var(--text-secondary); text-align: center; margin-bottom: 1.5rem; letter-spacing: 0.05em; }
+  .progress-text { font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 6px; }
+  .progress-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 1.5rem; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.3s ease; }
+  .shuffle-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 1rem; }
+  .nav-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 13px; padding: 4px 10px; font-family: inherit; border-radius: var(--radius); }
   .nav-btn:hover { color: var(--text-primary); background: var(--border); }
-
-  .card-wrap {
-    perspective: 1000px;
-    height: 320px;
-    cursor: pointer;
-    margin-bottom: 0.75rem;
-  }
-  .card {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.45s ease;
-  }
+  .card-wrap { perspective: 1000px; height: 320px; cursor: pointer; margin-bottom: 0.75rem; }
+  .card { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.45s ease; }
   .card.flipped { transform: rotateY(180deg); }
-
   .face {
-    position: absolute;
-    inset: 0;
-    background: var(--surface);
-    border: 0.5px solid var(--border);
-    border-radius: 12px;
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
+    position: absolute; inset: 0; background: var(--surface); border: 0.5px solid var(--border);
+    border-radius: 12px; backface-visibility: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem;
   }
   .face.back { transform: rotateY(180deg); }
-
-  .face-label {
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: 1.25rem;
-  }
-
+  .face-label { font-size: 11px; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1.25rem; }
   #accent-canvas { display: block; }
-
-  .kanji {
-    font-size: 24px;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-top: 0.5rem;
-  }
-
   .back-content { text-align: center; }
+  .kanji-back { font-size: 16px; color: var(--text-muted); margin-bottom: 0.4rem; }
   .chinese { font-size: 30px; font-weight: 500; margin-bottom: 0.5rem; }
   .english { font-size: 15px; color: var(--text-secondary); }
-
-  .tap-hint {
-    text-align: center;
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 0.75rem;
-  }
-
-  .controls {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 0.75rem;
-  }
-  .btn {
-    padding: 9px 28px;
-    border-radius: var(--radius);
-    border: 0.5px solid var(--border-strong);
-    background: transparent;
-    color: var(--text-primary);
-    font-size: 14px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background 0.15s;
-  }
+  .tap-hint { text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .controls { display: flex; gap: 10px; justify-content: center; margin-bottom: 0.75rem; }
+  .btn { padding: 9px 28px; border-radius: var(--radius); border: 0.5px solid var(--border-strong); background: transparent; color: var(--text-primary); font-size: 14px; cursor: pointer; font-family: inherit; transition: background 0.15s; }
   .btn:hover { background: var(--border); }
   .btn-know { border-color: var(--success); color: var(--success); }
   .btn-know:hover { background: var(--success-bg); }
   .btn-retry { border-color: var(--danger); color: var(--danger); }
   .btn-retry:hover { background: var(--danger-bg); }
-
-  .nav-row {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-  }
-
-  .result-screen {
-    text-align: center;
-    padding: 3rem 1rem;
-  }
+  .nav-row { display: flex; gap: 8px; justify-content: center; }
+  .result-screen { text-align: center; padding: 3rem 1rem; }
   .result-title { font-size: 22px; font-weight: 500; margin-bottom: 0.5rem; }
   .result-sub { color: var(--text-secondary); font-size: 15px; margin-bottom: 1.5rem; }
 </style>
@@ -199,15 +65,12 @@
 <body>
 <div class="app">
   <h1>病院用語フラッシュカード</h1>
-
   <div class="progress-text" id="progress-text">1 / 28</div>
   <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-
   <div class="shuffle-row">
     <button class="nav-btn" onclick="shuffleCards()">🔀 シャッフル</button>
     <button class="nav-btn" onclick="resetAll()">↺ 最初から</button>
   </div>
-
   <div class="card-wrap" onclick="flipCard()" id="card-wrap">
     <div class="card" id="card">
       <div class="face front">
@@ -217,65 +80,74 @@
       <div class="face back">
         <div class="face-label">意味</div>
         <div class="back-content">
-          <div class="kanji" id="kanji-back" style="font-size:18px; color:var(--text-muted); margin-bottom:0.5rem;"></div>
+          <div class="kanji-back" id="kanji-back"></div>
           <div class="chinese" id="chinese-back"></div>
           <div class="english" id="english-back"></div>
         </div>
       </div>
     </div>
   </div>
-
   <div class="tap-hint" id="tap-hint">タップしてめくる</div>
-
   <div class="controls" id="controls" style="display:none;">
     <button class="btn btn-retry" onclick="markCard(false)">もう一度</button>
     <button class="btn btn-know" onclick="markCard(true)">わかった！</button>
   </div>
-
   <div class="nav-row" id="nav-row">
     <button class="nav-btn" onclick="prevCard()">← 前</button>
     <button class="nav-btn" onclick="flipCard()">めくる</button>
     <button class="nav-btn" onclick="nextCard()">次 →</button>
   </div>
-
   <div id="result-screen" style="display:none;" class="result-screen">
     <div class="result-title">完了！</div>
     <div class="result-sub" id="result-sub"></div>
     <button class="btn" onclick="resetAll()">もう一度</button>
   </div>
 </div>
-
 <script>
 const words = [
-  { kana:"しょほうせん", kanji:"処方箋",     accent:[0,0,1,1,1,1], chinese:"處方箋",       english:"Prescription" },
-  { kana:"もんしん",     kanji:"問診",       accent:[0,1,1,1],     chinese:"問診",         english:"Medical interview" },
-  { kana:"もんしんひょう",kanji:"問診票",    accent:[0,1,1,1,1,1,1],chinese:"問診表",      english:"Medical questionnaire" },
-  { kana:"カルテ",       kanji:"カルテ",     accent:[1,0,0],       chinese:"病歷表",       english:"Medical record" },
-  { kana:"ほけんしょう", kanji:"保険証",     accent:[0,1,1,1,1],   chinese:"健保卡",       english:"Insurance card" },
-  { kana:"ぼしてちょう", kanji:"母子手帳",   accent:[0,1,1,0,0,0], chinese:"母嬰健康手冊", english:"Maternal & child health handbook" },
-  { kana:"よやく",       kanji:"予約",       accent:[0,1,1],       chinese:"預約",         english:"Appointment" },
-  { kana:"しょうかいじょう",kanji:"紹介状",  accent:[0,0,1,1,1,1,1],chinese:"轉診單",     english:"Referral letter" },
-  { kana:"さいしん",     kanji:"再診",       accent:[0,1,1,1],     chinese:"複診",         english:"Follow-up visit" },
-  { kana:"けつあつ",     kanji:"血圧",       accent:[0,1,1,1],     chinese:"血壓",         english:"Blood pressure" },
-  { kana:"けつえきけんさ",kanji:"血液検査",  accent:[0,1,1,1,1,0,0],chinese:"血液檢查",   english:"Blood test" },
-  { kana:"レントゲン",   kanji:"レントゲン", accent:[0,1,1,1,1],   chinese:"X光",          english:"X-ray" },
-  { kana:"エコー",       kanji:"エコー",     accent:[1,0,0],       chinese:"超音波檢查",   english:"Ultrasound" },
-  { kana:"てんてき",     kanji:"点滴",       accent:[0,1,1,1],     chinese:"點滴",         english:"IV drip" },
-  { kana:"しゅじゅつ",   kanji:"手術",       accent:[1,1,0,0],     chinese:"手術",         english:"Surgery" },
-  { kana:"のみぐすり",   kanji:"飲み薬",     accent:[0,1,1,0,0],   chinese:"口服藥",       english:"Oral medicine" },
-  { kana:"ぬりぐすり",   kanji:"塗り薬",     accent:[0,1,1,0,0],   chinese:"藥膏",         english:"Ointment" },
-  { kana:"しょうじょう", kanji:"症状",       accent:[0,0,1,1,0],   chinese:"症狀",         english:"Symptom" },
-  { kana:"はきけ",       kanji:"吐き気",     accent:[0,1,1],       chinese:"噁心／想吐",   english:"Nausea" },
-  { kana:"めまい",       kanji:"めまい",     accent:[0,1,0],       chinese:"頭暈",         english:"Dizziness" },
-  { kana:"せき",         kanji:"咳",         accent:[0,1],         chinese:"咳嗽",         english:"Cough" },
-  { kana:"かゆみ",       kanji:"かゆみ",     accent:[0,1,1],       chinese:"搔癢",         english:"Itchiness" },
-  { kana:"はれ",         kanji:"腫れ",       accent:[0,1],         chinese:"腫脹",         english:"Swelling" },
-  { kana:"しびれ",       kanji:"しびれ",     accent:[0,1,1],       chinese:"麻痺／發麻",   english:"Numbness" },
-  { kana:"おうと",       kanji:"嘔吐",       accent:[1,0,0],       chinese:"嘔吐",         english:"Vomiting" },
-  { kana:"げり",         kanji:"下痢",       accent:[0,1],         chinese:"腹瀉",         english:"Diarrhea" },
-  { kana:"かかりつけい", kanji:"かかりつけ医",accent:[0,1,1,1,1,0],chinese:"家庭醫師",    english:"Family doctor" },
-  { kana:"しゅじい",     kanji:"主治医",     accent:[0,0,1,0],     chinese:"主治醫師",     english:"Primary physician" },
+  { kana:"しょほうせん",    kanji:"処方箋",      accent:[0,1,1,1,1],    chinese:"處方箋",       english:"Prescription" },
+  { kana:"もんしん",        kanji:"問診",         accent:[0,1,1,1],      chinese:"問診",         english:"Medical interview" },
+  { kana:"もんしんひょう",  kanji:"問診票",       accent:[0,1,1,1,1,1],  chinese:"問診表",       english:"Medical questionnaire" },
+  { kana:"カルテ",          kanji:"カルテ",       accent:[1,0,0],        chinese:"病歷表",       english:"Medical record" },
+  { kana:"ほけんしょう",    kanji:"保険証",       accent:[0,1,1,1,1],    chinese:"健保卡",       english:"Insurance card" },
+  { kana:"ぼしてちょう",    kanji:"母子手帳",     accent:[0,1,1,0,0],    chinese:"母嬰健康手冊", english:"Maternal & child health handbook" },
+  { kana:"よやく",          kanji:"予約",         accent:[0,1,1],        chinese:"預約",         english:"Appointment" },
+  { kana:"しょうかいじょう",kanji:"紹介状",       accent:[0,1,1,1,1,1],  chinese:"轉診單",       english:"Referral letter" },
+  { kana:"さいしん",        kanji:"再診",         accent:[0,1,1,1],      chinese:"複診",         english:"Follow-up visit" },
+  { kana:"けつあつ",        kanji:"血圧",         accent:[0,1,1,1],      chinese:"血壓",         english:"Blood pressure" },
+  { kana:"けつえきけんさ",  kanji:"血液検査",     accent:[0,1,1,1,1,0,0],chinese:"血液檢查",    english:"Blood test" },
+  { kana:"レントゲン",      kanji:"レントゲン",   accent:[0,1,1,1,1],    chinese:"X光",          english:"X-ray" },
+  { kana:"エコー",          kanji:"エコー",       accent:[1,0,0],        chinese:"超音波檢查",   english:"Ultrasound" },
+  { kana:"てんてき",        kanji:"点滴",         accent:[0,1,1,1],      chinese:"點滴",         english:"IV drip" },
+  { kana:"しゅじゅつ",      kanji:"手術",         accent:[1,0,0],        chinese:"手術",         english:"Surgery" },
+  { kana:"のみぐすり",      kanji:"飲み薬",       accent:[0,1,1,0,0],    chinese:"口服藥",       english:"Oral medicine" },
+  { kana:"ぬりぐすり",      kanji:"塗り薬",       accent:[0,1,1,0,0],    chinese:"藥膏",         english:"Ointment" },
+  { kana:"しょうじょう",    kanji:"症状",         accent:[0,1,1,0],      chinese:"症狀",         english:"Symptom" },
+  { kana:"はきけ",          kanji:"吐き気",       accent:[0,1,1],        chinese:"噁心／想吐",   english:"Nausea" },
+  { kana:"めまい",          kanji:"めまい",       accent:[0,1,0],        chinese:"頭暈",         english:"Dizziness" },
+  { kana:"せき",            kanji:"咳",           accent:[0,1],          chinese:"咳嗽",         english:"Cough" },
+  { kana:"かゆみ",          kanji:"かゆみ",       accent:[0,1,1],        chinese:"搔癢",         english:"Itchiness" },
+  { kana:"はれ",            kanji:"腫れ",         accent:[0,1],          chinese:"腫脹",         english:"Swelling" },
+  { kana:"しびれ",          kanji:"しびれ",       accent:[0,1,1],        chinese:"麻痺／發麻",   english:"Numbness" },
+  { kana:"おうと",          kanji:"嘔吐",         accent:[1,0,0],        chinese:"嘔吐",         english:"Vomiting" },
+  { kana:"げり",            kanji:"下痢",         accent:[0,1],          chinese:"腹瀉",         english:"Diarrhea" },
+  { kana:"かかりつけい",    kanji:"かかりつけ医", accent:[0,1,1,1,1,0],  chinese:"家庭醫師",    english:"Family doctor" },
+  { kana:"しゅじい",        kanji:"主治医",       accent:[0,1,0],        chinese:"主治醫師",     english:"Primary physician" },
 ];
+
+function splitMora(kana) {
+  const small = 'ぁぃぅぇぉっゃゅょァィゥェォッャュョ';
+  const result = [];
+  for (let i = 0; i < kana.length; i++) {
+    if (i + 1 < kana.length && small.includes(kana[i+1])) {
+      result.push(kana[i] + kana[i+1]);
+      i++;
+    } else {
+      result.push(kana[i]);
+    }
+  }
+  return result;
+}
 
 let deck = [...words];
 let current = 0;
@@ -294,7 +166,7 @@ function drawAccent(word) {
   ctx.scale(dpr, dpr);
   ctx.clearRect(0, 0, W, H);
 
-  const kana = word.kana;
+  const mora = splitMora(word.kana);
   const pattern = word.accent;
   const n = pattern.length;
   if (!n) return;
@@ -309,7 +181,6 @@ function drawAccent(word) {
   const startX = (W - totalW) / 2;
   const yHigh = 16, yLow = 46;
   const fontSize = Math.min(15, cellW * 0.68);
-
   const cx = i => startX + cellW * i + cellW / 2;
 
   ctx.lineWidth = 2.5;
@@ -352,7 +223,7 @@ function drawAccent(word) {
   ctx.textAlign = 'center';
   for (let i = 0; i < n; i++) {
     const y = pattern[i] === 1 ? yHigh : yLow;
-    ctx.fillText(kana[i] || '', cx(i), y + 22);
+    ctx.fillText(mora[i] || '', cx(i), y + 22);
   }
 }
 
